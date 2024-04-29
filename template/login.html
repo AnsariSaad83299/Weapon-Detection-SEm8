@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .slider {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 1rem;
+        }
+
+        .slider div {
+            width: 50%;
+            padding-top: 4px;
+            height: 5px;
+            background-color: #ddd;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .slider div.active {
+            background-color: #4a90e2;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-200">
+    <div class="relative w-full h-screen">
+        <!-- Video Background -->
+        <video autoplay loop muted class="absolute inset-0 w-full h-full object-cover" id="video">
+            <source src="{{url_for('static', filename='cam2.mp4')}}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black opacity-70"></div>
+
+        <!-- Navbar -->
+        <nav class="nav z-10 flex w-full p-10 absolute h-20 justify-center items-center">
+            <a href="index.html">
+                <div class="flex items-center">
+                    <div class="w-40 h-40 flex items-center justify-center">
+                        <img src="{{url_for('static', filename='vigilanteye 1.png')}}" class="" alt="Logo">
+                    </div>
+                </div>
+            </a>
+            <div class="flex items-center ml-auto w-1/6 justify-between">
+                <div class="about text-white text-lg cursor-pointer  mr-4">About</div>
+                <div class="signup relative">
+                    <a href="signup.html">
+                        <button
+                            class="bg-gray-700 text-white px-4 py-2 border hover:bg-blue-500 transition-all duration-300 rounded-md backdrop-blur-lg">Sign
+                            Up</button>
+                    </a>
+                </div>
+                <div class="login relative">
+                    <a href="login.html"
+                        class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-400 hover:to-blue-600 text-white px-4 py-2 rounded-md ml-4 transition-all">
+                        <span class="backdrop-blur-lg">Login</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+
+        <!-- Login Card -->
+        <div class="flex absolute w-full justify-center items-center h-screen">
+            <div class="border-2  bg-gray-200 rounded-lg shadow-lg p-8 w-96 flex flex-col gap-6">
+                <h2 class="text-2xl font-bold ">Login</h2>
+                <!-- Toggle Box -->
+                <div class="slider "> <!-- Adjusted padding -->
+                    <div id="policeToggle" class="active " onclick="toggleForm('police')">Police</div>
+                    <div id="businessToggle" onclick="toggleForm('business')">Business</div>
+                </div>
+                <!-- Police Login -->
+                <div id="policeLogin" class="mt-4">
+                    <form action="police.html">
+                        <div class="mb-4">
+                            <label for="policeEmail" class="block text-gray-700 text-sm font-bold mb-2">Police
+                                Email</label>
+                            <input type="email" id="policeEmail" name="policeEmail"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div class="mb-4">
+                            <label for="policePassword"
+                                class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                            <input type="password" id="policePassword" name="policePassword"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                        </div>
+                        <a href="police.html">
+
+                            <button type="submit"
+                                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300">Login</button>
+                        </a>
+                    </form>
+                </div>
+                <!-- Business Login -->
+                <div id="businessLogin" class="hidden mt-4">
+                    <form action="business.html">
+                        <div class="mb-4">
+                            <label for="businessEmail" class="block text-gray-700 text-sm font-bold mb-2">Business
+                                Email</label>
+                            <input type="email" id="businessEmail" name="businessEmail"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div class="mb-4">
+                            <label for="businessPassword"
+                                class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                            <input type="password" id="businessPassword" name="businessPassword"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                        </div>
+                        <button type="submit"
+                            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300">Login</button>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- Login Card -->
+    </div>
+
+    <script>
+        function toggleForm(type) {
+            const policeToggle = document.getElementById('policeToggle');
+            const businessToggle = document.getElementById('businessToggle');
+            const policeLogin = document.getElementById('policeLogin');
+            const businessLogin = document.getElementById('businessLogin');
+
+            if (type === 'police') {
+                policeToggle.classList.add('active');
+                businessToggle.classList.remove('active');
+                policeLogin.classList.remove('hidden');
+                businessLogin.classList.add('hidden');
+            } else if (type === 'business') {
+                businessToggle.classList.add('active');
+                policeToggle.classList.remove('active');
+                businessLogin.classList.remove('hidden');
+                policeLogin.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>

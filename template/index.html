@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gray-200">
+    <div class="relative w-full h-screen ">
+        <video autoplay loop muted class="absolute inset-0 w-full h-full object-cover" id="video">
+            <source src="{{url_for('static', filename='cam2.mp4')}}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="absolute inset-0 bg-black opacity-70"></div>
+
+        <!-- navv -->
+        <nav class="nav flex w-full z-10 p-10 absolute h-20 justify-center  items-center">
+            <div class="flex items-center  ">
+                <div class="w-40 h-40 flex items-center justify-center">
+                    <img src="{{url_for('static', filename='vigilanteye 1.png')}}" class="" alt="Logo">
+                </div>
+            </div>
+            <div class="flex items-center ml-auto w-1/6 justify-between">
+                <div class="about text-white text-lg cursor-pointer  mr-4">About</div>
+                <div class="signup relative">
+                    <a href="{{url_for('signup')}}">
+
+                        <button
+                            class="bg-gray-700 text-white px-4 py-2 border hover:bg-blue-500 transition-all duration-300 rounded-md backdrop-blur-lg">Sign
+                            Up</button>
+                    </a>
+                </div>
+                <div class="login relative">
+                    <a href="{{url_for('login')}}"
+                        class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-400 hover:to-blue-600 text-white px-4 py-2 rounded-md ml-4 transition-all">
+                        <span class="backdrop-blur-lg">Login</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- navv -->
+        <div class="content flex justify-center flex-col gap-4 items-center w-full h-screen absolute ">
+            <div class="text-8xl font-semibold ">
+              
+                <span class="bg-gradient-to-r from-blue-100 to-blue-400 text-transparent bg-clip-text">VigilantEYE
+                </span>
+            </div>
+
+            <div class="vigilanteye text-6xl text-white opacity-75 font-semibold">Weapon Detection using Live CCTV
+                webapp</div>
+        </div>
+    </div>
+    </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-200">
+    <div class="relative w-full h-screen">
+        <!-- Video Background -->
+        <video autoplay loop muted class="absolute inset-0 w-full h-full object-cover" id="video">
+            <source src="{{url_for('static', filename='cam2.mp4')}}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black opacity-70"></div>
+
+        <!-- Navbar -->
+        <nav class="nav z-10 flex w-full p-10 absolute h-20 justify-center items-center">
+            <div class="flex items-center">
+                <a href="index.html">
+                    <div class="w-40 h-40 flex items-center justify-center">
+                        <img src="{{url_for('static', filename='vigilanteye 1.png')}}"" class="" alt="Logo">
+                    </div>
+                </a>
+            </div>
+            <div class="flex items-center ml-auto w-1/6 justify-between">
+                <div class="text-white text-lg mr-4">Hello, Officer</div>
+                <div class="relative">
+                    <a href="index.html">
+
+                        <button
+                            class="bg-red-500 text-white px-4 py-2 border hover:bg-red-600 transition-all duration-300 rounded-md backdrop-blur-lg">Logout</button>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+
+        <!-- Table Section -->
+        <div class="flex justify-center w-full items-center absolute h-screen">
+            <div class="text-white text-center flex flex-col items-center justify-center w-full h-screen">
+                <h2 class="text-2xl font-bold mb-4">Police Details</h2>
+                <table class="bg-gray-800 border-collapse w-3/4">
+                    <thead>
+                        <tr>
+                            <th class="px-6 py-3 text-left text-white">Serial Number</th>
+                            <th class="px-6 py-3 text-left text-white">Name</th>
+                            <th class="px-6 py-3 text-left text-white">Address</th>
+                            <th class="px-6 py-3 text-left text-white">PDFs Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-gray-700">
+                            <td class="border px-6 py-4">1</td>
+                            <td class="border px-6 py-4">John Doe</td>
+                            <td class="border px-6 py-4">123 Main St</td>
+                            <td class="border px-6 py-4"><a href="#" class="text-blue-400">PDF Link</a></td>
+                        </tr>
+                        <tr class="bg-gray-700">
+                            <td class="border px-6 py-4">1</td>
+                            <td class="border px-6 py-4">John Doe</td>
+                            <td class="border px-6 py-4">123 Main St</td>
+                            <td class="border px-6 py-4"><a href="#" class="text-blue-400">PDF Link</a></td>
+                        </tr>
+                        <tr class="bg-gray-700">
+                            <td class="border px-6 py-4">1</td>
+                            <td class="border px-6 py-4">John Doe</td>
+                            <td class="border px-6 py-4">123 Main St</td>
+                            <td class="border px-6 py-4"><a href="#" class="text-blue-400">PDF Link</a></td>
+                        </tr>
+                        <tr class="bg-gray-700">
+                            <td class="border px-6 py-4">1</td>
+                            <td class="border px-6 py-4">John Doe</td>
+                            <td class="border px-6 py-4">123 Main St</td>
+                            <td class="border px-6 py-4"><a href="#" class="text-blue-400">PDF Link</a></td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Table Section -->
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-200">
+    <div class="relative w-full h-screen">
+        <!-- Video Background -->
+        <video autoplay loop muted class="absolute inset-0 w-full h-full object-cover" id="video">
+            <source src="{{url_for('static', filename='cam2.mp4')}}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black opacity-80"></div>
+
+        <!-- Navbar -->
+        <nav class="nav z-10 flex w-full p-10 absolute h-20 justify-center items-center">
+            <div class="flex items-center">
+                <a href="index.html">
+                    <div class="w-40 h-40 flex items-center justify-center">
+                        <img src="{{url_for('static', filename='vigilanteye 1.png')}}" class="" alt="Logo">
+                    </div>
+                </a>
+            </div>
+            <div class="flex items-center ml-auto w-1/6 justify-between">
+                <div class="text-white text-lg mr-4">Hello, User</div>
+                <div class="relative">
+                    <a href="index.html">
+
+                        <button
+                            class="bg-red-500 text-white px-4 py-2 border hover:bg-red-600 transition-all duration-300 rounded-md backdrop-blur-lg">Logout</button>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+
+        <!-- Video Frame -->
+        <div class="absolute flex flex-col gap-4 items-center justify-center w-full h-screen">
+            <div class="videoframe  flex justify-center items-center w-4/5 h-3/4 bg-gray-300  text-5xl font-semibold opacity-40 ">
+                CCTV Video</div>
+            <button
+                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300">Start
+                Monitoring</button>
+        </div>
+        <!-- Video Frame -->
+    </div>
+</body>
+
+</html>
