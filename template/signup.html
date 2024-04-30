@@ -16,10 +16,12 @@
         .slider div {
             width: 50%;
             padding-top: 4px;
-            height: 6px; /* Increased height */
+            height: 6px;
+            /* Increased height */
             background-color: #ddd;
             cursor: pointer;
-            transition: background-color 0.3s ease; /* Transition effect */
+            transition: background-color 0.3s ease;
+            /* Transition effect */
         }
 
         .slider div.active {
@@ -31,6 +33,46 @@
             width: 400px;
             scale: 90%;
             margin: auto;
+        }
+
+        /* Popup modal styles */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 20px;
+            bottom: 20px;
+            stroke: none;
+            border-radius: 100px;
+            width: 20%;
+            /* Full width */
+            height: 50%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            /* background-color: rgb(0,0,0);  */
+            /* background-color: rgba(0,0,0,0.4);  */
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            /* 15% from the top and centered */
+            padding: 20px;
+            /* border: 1px solid #888; */
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+        }
+
+        /* Error message style */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -59,10 +101,13 @@
             <div class="flex items-center ml-auto w-1/6 justify-between">
                 <div class="about text-white text-lg cursor-pointer  mr-4">About</div>
                 <div class="signup relative">
-                    <button class="bg-gray-700 text-white px-4 py-2 border hover:bg-blue-500 transition-all duration-300 rounded-md backdrop-blur-lg">Sign Up</button>
+                    <button
+                        class="bg-gray-700 text-white px-4 py-2 border hover:bg-blue-500 transition-all duration-300 rounded-md backdrop-blur-lg">Sign
+                        Up</button>
                 </div>
                 <div class="login relative">
-                    <a href="{{url_for('login')}}" class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-400 hover:to-blue-600 text-white px-4 py-2 rounded-md ml-4 transition-all">
+                    <a href="{{url_for('login')}}"
+                        class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-400 hover:to-blue-600 text-white px-4 py-2 rounded-md ml-4 transition-all">
                         <span class="backdrop-blur-lg">Login</span>
                     </a>
                 </div>
@@ -81,55 +126,77 @@
                 </div>
                 <!-- Police Signup Form -->
                 <div id="policeSignup" class="mb-8">
-                    <form action="{{url_for('signup_police')}}" method="post">
+                    <form id="policeSignupForm" action="{{url_for('signup_police')}}" method="post">
                         <!-- Police Fields -->
                         <div class="mb-4">
-                            <label for="branchName" class="block text-gray-700 text-sm font-bold mb-2">Branch Name</label>
-                            <input type="text" id="branchName" name="branchName" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <label for="branchName" class="block text-gray-700 text-sm font-bold mb-2">Branch
+                                Name</label>
+                            <input required type="text" id="branchName" name="branchName"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                         </div>
                         <div class="mb-4">
-                            <label for="policeEmail" class="block text-gray-700 text-sm font-bold mb-2">Police Email</label>
-                            <input type="email" id="policeEmail" name="policeEmail" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <label for="policeEmail" class="block text-gray-700 text-sm font-bold mb-2">Police
+                                Email</label>
+                            <input required type="email" id="policeEmail" name="policeEmail"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <div id="policeEmailError" class="error-message"></div>
                         </div>
                         <div class="mb-4">
-                            <label for="contactNumber" class="block text-gray-700 text-sm font-bold mb-2">Contact Number</label>
-                            <input type="tel" id="contactNumber" name="contactNumber" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <label for="contactNumber" class="block text-gray-700 text-sm font-bold mb-2">Contact
+                                Number</label>
+                            <input required type="tel" id="contactNumber" name="contactNumber"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                         </div>
                         <div class="mb-4">
                             <label for="address" class="block text-gray-700 text-sm font-bold mb-2">Address</label>
-                            <input type="text" id="address" name="address" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <input required type="text" id="address" name="address"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                         </div>
                         <div class="mb-4">
-                            <label for="policeUsername" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
-                            <input type="text" id="policeUsername" name="policeUsername" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <label for="policeUsername"
+                                class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                            <input required type="text" id="policeUsername" name="policeUsername"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                         </div>
                         <div class="mb-4">
-                            <label for="policePassword" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
-                            <input type="password" id="policePassword" name="policePassword" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <label for="policePassword"
+                                class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                            <input required type="password" id="policePassword" name="policePassword"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                         </div>
                         <!-- Submit Button -->
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300">Submit</button>
+                        <button id="policeSubmitBtn" type="submit"
+                            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300">Submit</button>
                     </form>
                 </div>
                 <!-- Business Signup Form -->
                 <div id="businessSignup" class="hidden mb-8">
-                    <form action="{{url_for('signup_business')}}" method="post">
+                    <form id="businessSignupForm" action="{{url_for('signup_business')}}" method="post">
                         <!-- Business Fields -->
                         <div class="mb-4">
-                            <label for="businessName" class="block text-gray-700 text-sm font-bold mb-2">Business Name</label>
-                            <input type="text" id="businessName" name="businessName" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <label for="businessName" class="block text-gray-700 text-sm font-bold mb-2">Business
+                                Name</label>
+                            <input required type="text" id="businessName" name="businessName"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                         </div>
                         <div class="mb-4">
-                            <label for="businessEmail" class="block text-gray-700 text-sm font-bold mb-2">Business Email</label>
-                            <input type="email" id="businessEmail" name="businessEmail" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <label for="businessEmail" class="block text-gray-700 text-sm font-bold mb-2">Business
+                                Email</label>
+                            <input required type="email" id="businessEmail" name="businessEmail"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <div id="businessEmailError" class="error-message"></div>
                         </div>
                         <div class="mb-4">
-                            <label for="businessContactNumber" class="block text-gray-700 text-sm font-bold mb-2">Contact Number</label>
-                            <input type="tel" id="businessContactNumber" name="businessContactNumber" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <label for="businessContactNumber"
+                                class="block text-gray-700 text-sm font-bold mb-2">Contact Number</label>
+                            <input required type="tel" id="businessContactNumber" name="businessContactNumber"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                         </div>
                         <div class="mb-4">
-                            <label for="nearestPoliceStation" class="block text-gray-700 text-sm font-bold mb-2">Nearest Police Station</label>
-                            <select id="nearestPoliceStation" name="nearestPoliceStation" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <label for="nearestPoliceStation" class="block text-gray-700 text-sm font-bold mb-2">Nearest
+                                Police Station</label>
+                            <select required id="nearestPoliceStation" name="nearestPoliceStation"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                                 <option value="">Select Nearest Police Station</option>
                                 {% for address in police_addresses %}
                                 <option value="{{ address }}">{{ address }}</option>
@@ -137,22 +204,46 @@
                             </select>
                         </div>
                         <div class="mb-4">
-                            <label for="businessUsername" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
-                            <input type="text" id="businessUsername" name="businessUsername" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <label for="businessUsername"
+                                class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                            <input required type="text" id="businessUsername" name="businessUsername"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                         </div>
                         <div class="mb-4">
-                            <label for="businessPassword" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
-                            <input type="password" id="businessPassword" name="businessPassword" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <label for="businessPassword"
+                                class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                            <input required type="password" id="businessPassword" name="businessPassword"
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                         </div>
                         <!-- Submit Button -->
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300">Submit</button>
+                        <button id="businessSubmitBtn" type="submit"
+                            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300">Submit</button>
                     </form>
                 </div>
-                
+
             </div>
         </div>
         <!-- Signup Card -->
 
+        <!-- Popup modal for success message -->
+        <div id="signupSuccessModal" class="modal">
+            <div class="modal-content">
+                <h2 class="text-lg font-semibold text-gray-800">Signup Successful!</h2>
+                <p class="text-sm text-gray-600">You have successfully signed up.</p>
+                <button id="closeModalBtn"
+                    class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300">Close</button>
+            </div>
+        </div>
+
+    </div>
+    <!-- Error modal for displaying error messages -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-lg font-semibold text-red-600">Error</h2>
+            <p id="errorMessage" class="text-sm text-gray-600"></p>
+            <button id="closeErrorModalBtn"
+                class="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-all duration-300">Close</button>
+        </div>
     </div>
 
     <script>
@@ -178,7 +269,113 @@
                 signupCard.style.width = "400px"; // Adjust card width
             }
         }
+
+        // Show popup modal on successful signup
+        function showSignupSuccessModal() {
+            const modal = document.getElementById('signupSuccessModal');
+            modal.style.display = 'block';
+        }
+
+        // Show error message popup
+        // Function to show error message popup
+        function showErrorModal(message) {
+            const errorModal = document.getElementById('errorModal');
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = message;
+            errorModal.style.display = 'block';
+        }
+
+        // Function to close error message popup
+        function closeErrorModal() {
+            const errorModal = document.getElementById('errorModal');
+            errorModal.style.display = 'none';
+        }
+
+        // Add event listener for close button and outside click to close the modal
+        document.getElementById('closeErrorModalBtn').addEventListener('click', closeErrorModal);
+        window.addEventListener('click', function (event) {
+            const errorModal = document.getElementById('errorModal');
+            if (event.target === errorModal) {
+                errorModal.style.display = 'none';
+            }
+        });
+
+        // Add event listeners for close button and outside click to close the modal
+        document.getElementById('closeModalBtn').addEventListener('click', closeSignupSuccessModal);
+        document.getElementById('closeErrorModalBtn').addEventListener('click', closeErrorModal);
+        window.addEventListener('click', function (event) {
+            const modal = document.getElementById('signupSuccessModal');
+            const errorModal = document.getElementById('errorModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+            if (event.target === errorModal) {
+                errorModal.style.display = 'none';
+            }
+        });
+
+        // Function to handle form submission and validation for police signup
+        document.getElementById('policeSignupForm').addEventListener('submit', function (event) {
+            const emailField = document.getElementById('policeEmail');
+            const emailError = document.getElementById('policeEmailError');
+            const fields = document.querySelectorAll('#policeSignupForm input[required]');
+
+            // Check if any required field is empty
+            let hasEmptyField = false;
+            fields.forEach(field => {
+                if (!field.value.trim()) {
+                    hasEmptyField = true;
+                }
+            });
+
+            if (hasEmptyField) {
+                event.preventDefault(); // Prevent form submission
+                showErrorModal('Please fill out all required fields.');
+                return;
+            }
+
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailField.value)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                event.preventDefault(); // Prevent form submission
+            } else {
+                emailError.textContent = ''; // Clear error message
+            }
+        });
+
+        // Function to handle form submission and validation for business signup
+        document.getElementById('businessSignupForm').addEventListener('submit', function (event) {
+            const emailField = document.getElementById('businessEmail');
+            const emailError = document.getElementById('businessEmailError');
+            const fields = document.querySelectorAll('#businessSignupForm input[required]');
+
+            // Check if any required field is empty
+            let hasEmptyField = false;
+            fields.forEach(field => {
+                if (!field.value.trim()) {
+                    hasEmptyField = true;
+                }
+            });
+
+            if (hasEmptyField) {
+                event.preventDefault(); // Prevent form submission
+                showErrorModal('Please fill out all required fields.');
+                return;
+            }
+
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailField.value)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                event.preventDefault(); // Prevent form submission
+            } else {
+                emailError.textContent = ''; // Clear error message
+            }
+        });
     </script>
+
+
 </body>
 
 </html>

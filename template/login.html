@@ -42,7 +42,7 @@
 
         <!-- Navbar -->
         <nav class="nav z-10 flex w-full p-10 absolute h-20 justify-center items-center">
-            <a href="index.html">
+            <a href="{{url_for('home')}}">
                 <div class="flex items-center">
                     <div class="w-40 h-40 flex items-center justify-center">
                         <img src="{{url_for('static', filename='vigilanteye 1.png')}}" class="" alt="Logo">
@@ -52,7 +52,7 @@
             <div class="flex items-center ml-auto w-1/6 justify-between">
                 <div class="about text-white text-lg cursor-pointer  mr-4">About</div>
                 <div class="signup relative">
-                    <a href="signup.html">
+                    <a href="{{url_for('signup')}}">
                         <button
                             class="bg-gray-700 text-white px-4 py-2 border hover:bg-blue-500 transition-all duration-300 rounded-md backdrop-blur-lg">Sign
                             Up</button>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="login relative">
                     <a href="login.html"
-                        class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-400 hover:to-blue-600 text-white px-4 py-2 rounded-md ml-4 transition-all">
+                        class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-400 hover:to-blue-600 text-white px-4 py-2  rounded-md ml-4 transition-all">
                         <span class="backdrop-blur-lg">Login</span>
                     </a>
                 </div>

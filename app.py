@@ -29,6 +29,11 @@ def signup_police():
         username = request.form.get('policeUsername')
         password = request.form.get('policePassword')
 
+        # Check if email already exists
+        if mongo.db.police.find_one({'police_email': police_email}):
+            return jsonify({'error': 'Email already exists'}), 400
+
+        # Insert new police data
         police_collection = mongo.db.police
         police_collection.insert_one({
             'branch_name': branch_name,
@@ -38,7 +43,7 @@ def signup_police():
             'username': username,
             'password': password
         })
-        return 'Police signup successful'
+        return '', 204  # Return empty response with 204 status code for success
     else:
         return 'Invalid request method'
 
@@ -52,6 +57,11 @@ def signup_business():
         username = request.form.get('businessUsername')
         password = request.form.get('businessPassword')
 
+        # Check if email already exists
+        if mongo.db.business.find_one({'business_email': business_email}):
+            return jsonify({'error': 'Email already exists'}), 400
+
+        # Insert new business data
         business_collection = mongo.db.business
         business_collection.insert_one({
             'business_name': business_name,
@@ -61,7 +71,8 @@ def signup_business():
             'username': username,
             'password': password
         })
-        return 'Business signup successful'
+        # success - 204
+        return '', 204 
     else:
         return 'Invalid request method'
 
