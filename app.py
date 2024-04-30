@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_pymongo import PyMongo
 
 app = Flask(__name__, template_folder='template', static_folder='static')
@@ -11,7 +11,9 @@ def home():
 
 @app.route('/signup')
 def signup():
-    return render_template('signup.html')
+    # Fetch police addresses from the database
+    police_addresses = mongo.db.police.distinct('address')
+    return render_template('signup.html', police_addresses=police_addresses)
 
 @app.route('/login')
 def login():

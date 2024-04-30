@@ -29,6 +29,7 @@
         /* Center the card and set a fixed width */
         #signupCard {
             width: 400px;
+            scale: 90%;
             margin: auto;
         }
     </style>
@@ -70,8 +71,8 @@
         <!-- Navbar -->
 
         <!-- Signup Card -->
-        <div class="flex absolute w-full justify-center items-center h-screen">
-            <div id="signupCard" class="border-2 bg-gray-200 rounded-lg shadow-lg p-8 flex flex-col gap-6">
+        <div class="flex absolute  w-full justify-center items-center h-screen">
+            <div id="signupCard" class=" bg-gray-200  rounded-lg shadow-lg p-8 flex flex-col gap-6">
                 <h2 class="text-2xl font-bold ">Signup</h2>
                 <!-- Toggle Box -->
                 <div class="slider pl-0 p-3 ">
@@ -128,7 +129,12 @@
                         </div>
                         <div class="mb-4">
                             <label for="nearestPoliceStation" class="block text-gray-700 text-sm font-bold mb-2">Nearest Police Station</label>
-                            <input type="text" id="nearestPoliceStation" name="nearestPoliceStation" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                            <select id="nearestPoliceStation" name="nearestPoliceStation" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                                <option value="">Select Nearest Police Station</option>
+                                {% for address in police_addresses %}
+                                <option value="{{ address }}">{{ address }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                         <div class="mb-4">
                             <label for="businessUsername" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
@@ -142,6 +148,7 @@
                         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300">Submit</button>
                     </form>
                 </div>
+                
             </div>
         </div>
         <!-- Signup Card -->
@@ -149,6 +156,7 @@
     </div>
 
     <script>
+        // Function to toggle between police and business signup forms
         function toggleForm(type) {
             const policeToggle = document.getElementById('policeToggle');
             const businessToggle = document.getElementById('businessToggle');
