@@ -145,8 +145,11 @@
                             <label for="contactNumber" class="block text-gray-700 text-sm font-bold mb-2">Contact
                                 Number</label>
                             <input required type="tel" id="contactNumber" name="contactNumber"
-                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                pattern="[0-9]*" title="Please enter only numbers">
                         </div>
+
+
                         <div class="mb-4">
                             <label for="address" class="block text-gray-700 text-sm font-bold mb-2">Address</label>
                             <input required type="text" id="address" name="address"
@@ -165,7 +168,7 @@
                                 class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                         </div>
                         <!-- Submit Button -->
-                        <button id="policeSubmitBtn" type="submit"
+                        <button id="policeSubmitBtn" type="submit" onclick="showSignupSuccessModal()"
                             class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300">Submit</button>
                     </form>
                 </div>
@@ -216,7 +219,7 @@
                                 class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                         </div>
                         <!-- Submit Button -->
-                        <button id="businessSubmitBtn" type="submit"
+                        <button id="businessSubmitBtn" type="submit" onclick="showSignupSuccessModal()"
                             class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300">Submit</button>
                     </form>
                 </div>
@@ -234,146 +237,153 @@
                     class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300">Close</button>
             </div>
         </div>
-
-    </div>
-    <!-- Error modal for displaying error messages -->
-    <div id="errorModal" class="modal">
-        <div class="modal-content">
-            <h2 class="text-lg font-semibold text-red-600">Error</h2>
-            <p id="errorMessage" class="text-sm text-gray-600"></p>
-            <button id="closeErrorModalBtn"
-                class="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-all duration-300">Close</button>
+        <div id="errorModal" class="modal">
+            <div class="modal-content">
+                <h2 class="text-lg font-semibold text-red-600">Error</h2>
+                <p id="errorMessage" class="text-sm text-gray-600"></p>
+                <button id="closeErrorModalBtn"
+                    class="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-all duration-300">Close</button>
+            </div>
         </div>
-    </div>
+        <!-- Error modal for displaying error messages -->
 
-    <script>
-        // Function to toggle between police and business signup forms
-        function toggleForm(type) {
-            const policeToggle = document.getElementById('policeToggle');
-            const businessToggle = document.getElementById('businessToggle');
-            const policeSignup = document.getElementById('policeSignup');
-            const businessSignup = document.getElementById('businessSignup');
-            const signupCard = document.getElementById('signupCard');
 
-            if (type === 'police') {
-                policeToggle.classList.add('active');
-                businessToggle.classList.remove('active');
-                policeSignup.classList.remove('hidden');
-                businessSignup.classList.add('hidden');
-                signupCard.style.width = "400px"; // Adjust card width
-            } else if (type === 'business') {
-                businessToggle.classList.add('active');
-                policeToggle.classList.remove('active');
-                businessSignup.classList.remove('hidden');
-                policeSignup.classList.add('hidden');
-                signupCard.style.width = "400px"; // Adjust card width
+        <script>
+            // Function to toggle between police and business signup forms
+            function toggleForm(type) {
+                const policeToggle = document.getElementById('policeToggle');
+                const businessToggle = document.getElementById('businessToggle');
+                const policeSignup = document.getElementById('policeSignup');
+                const businessSignup = document.getElementById('businessSignup');
+                const signupCard = document.getElementById('signupCard');
+
+                if (type === 'police') {
+                    policeToggle.classList.add('active');
+                    businessToggle.classList.remove('active');
+                    policeSignup.classList.remove('hidden');
+                    businessSignup.classList.add('hidden');
+                    signupCard.style.width = "400px"; // Adjust card width
+                } else if (type === 'business') {
+                    businessToggle.classList.add('active');
+                    policeToggle.classList.remove('active');
+                    businessSignup.classList.remove('hidden');
+                    policeSignup.classList.add('hidden');
+                    signupCard.style.width = "400px"; // Adjust card width
+                }
             }
-        }
 
-        // Show popup modal on successful signup
-        function showSignupSuccessModal() {
-            const modal = document.getElementById('signupSuccessModal');
-            modal.style.display = 'block';
-        }
+            // Show popup modal on successful signup
+            function showSignupSuccessModal() {
+                const modal = document.getElementById('signupSuccessModal');
+                modal.style.display = 'block';
+            }
 
-        // Show error message popup
-        // Function to show error message popup
-        function showErrorModal(message) {
-            const errorModal = document.getElementById('errorModal');
-            const errorMessage = document.getElementById('errorMessage');
-            errorMessage.textContent = message;
-            errorModal.style.display = 'block';
-        }
+            // Function to close the signup success modal
+            function closeSignupSuccessModal() {
+                const modal = document.getElementById('signupSuccessModal');
+                modal.style.display = 'block';
 
-        // Function to close error message popup
-        function closeErrorModal() {
-            const errorModal = document.getElementById('errorModal');
-            errorModal.style.display = 'none';
-        }
+            }
 
-        // Add event listener for close button and outside click to close the modal
-        document.getElementById('closeErrorModalBtn').addEventListener('click', closeErrorModal);
-        window.addEventListener('click', function (event) {
-            const errorModal = document.getElementById('errorModal');
-            if (event.target === errorModal) {
+            // Function to show error message popup
+            function showErrorModal(message) {
+                const errorModal = document.getElementById('errorModal');
+                const errorMessage = document.getElementById('errorMessage');
+                errorMessage.textContent = message;
+                errorModal.style.display = 'block';
+                modal.style.display = 'block';
+
+            }
+
+            // Function to close error message popup
+            function closeErrorModal() {
+                const errorModal = document.getElementById('errorModal');
                 errorModal.style.display = 'none';
             }
-        });
 
-        // Add event listeners for close button and outside click to close the modal
-        document.getElementById('closeModalBtn').addEventListener('click', closeSignupSuccessModal);
-        document.getElementById('closeErrorModalBtn').addEventListener('click', closeErrorModal);
-        window.addEventListener('click', function (event) {
-            const modal = document.getElementById('signupSuccessModal');
-            const errorModal = document.getElementById('errorModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-            if (event.target === errorModal) {
-                errorModal.style.display = 'none';
-            }
-        });
-
-        // Function to handle form submission and validation for police signup
-        document.getElementById('policeSignupForm').addEventListener('submit', function (event) {
-            const emailField = document.getElementById('policeEmail');
-            const emailError = document.getElementById('policeEmailError');
-            const fields = document.querySelectorAll('#policeSignupForm input[required]');
-
-            // Check if any required field is empty
-            let hasEmptyField = false;
-            fields.forEach(field => {
-                if (!field.value.trim()) {
-                    hasEmptyField = true;
+            // Add event listener for close button and outside click to close the modal
+            document.getElementById('closeErrorModalBtn').addEventListener('click', closeErrorModal);
+            window.addEventListener('click', function (event) {
+                const errorModal = document.getElementById('errorModal');
+                if (event.target === errorModal) {
+                    errorModal.style.display = 'none';
                 }
             });
 
-            if (hasEmptyField) {
-                event.preventDefault(); // Prevent form submission
-                showErrorModal('Please fill out all required fields.');
-                return;
-            }
-
-            // Validate email format
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailField.value)) {
-                emailError.textContent = 'Please enter a valid email address.';
-                event.preventDefault(); // Prevent form submission
-            } else {
-                emailError.textContent = ''; // Clear error message
-            }
-        });
-
-        // Function to handle form submission and validation for business signup
-        document.getElementById('businessSignupForm').addEventListener('submit', function (event) {
-            const emailField = document.getElementById('businessEmail');
-            const emailError = document.getElementById('businessEmailError');
-            const fields = document.querySelectorAll('#businessSignupForm input[required]');
-
-            // Check if any required field is empty
-            let hasEmptyField = false;
-            fields.forEach(field => {
-                if (!field.value.trim()) {
-                    hasEmptyField = true;
+            // Add event listeners for close button and outside click to close the modal
+            document.getElementById('closeModalBtn').addEventListener('click', closeSignupSuccessModal);
+            document.getElementById('closeErrorModalBtn').addEventListener('click', closeErrorModal);
+            window.addEventListener('click', function (event) {
+                const modal = document.getElementById('signupSuccessModal');
+                const errorModal = document.getElementById('errorModal');
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+                if (event.target === errorModal) {
+                    errorModal.style.display = 'none';
                 }
             });
 
-            if (hasEmptyField) {
-                event.preventDefault(); // Prevent form submission
-                showErrorModal('Please fill out all required fields.');
-                return;
-            }
+            // Function to handle form submission and validation for police signup
+            document.getElementById('policeSignupForm').addEventListener('submit', function (event) {
+                const emailField = document.getElementById('policeEmail');
+                const emailError = document.getElementById('policeEmailError');
+                const fields = document.querySelectorAll('#policeSignupForm input[required]');
 
-            // Validate email format
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailField.value)) {
-                emailError.textContent = 'Please enter a valid email address.';
-                event.preventDefault(); // Prevent form submission
-            } else {
-                emailError.textContent = ''; // Clear error message
-            }
-        });
-    </script>
+                // Check if any required field is empty
+                let hasEmptyField = false;
+                fields.forEach(field => {
+                    if (!field.value.trim()) {
+                        hasEmptyField = true;
+                    }
+                });
+
+                if (hasEmptyField) {
+                    event.preventDefault(); // Prevent form submission
+                    showErrorModal('Please fill out all required fields.');
+                    return;
+                }
+
+                // Validate email format
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailField.value)) {
+                    emailError.textContent = 'Please enter a valid email address.';
+                    event.preventDefault(); // Prevent form submission
+                } else {
+                    emailError.textContent = ''; // Clear error message
+                }
+            });
+
+            // Function to handle form submission and validation for business signup
+            document.getElementById('businessSignupForm').addEventListener('submit', function (event) {
+                const emailField = document.getElementById('businessEmail');
+                const emailError = document.getElementById('businessEmailError');
+                const fields = document.querySelectorAll('#businessSignupForm input[required]');
+
+                // Check if any required field is empty
+                let hasEmptyField = false;
+                fields.forEach(field => {
+                    if (!field.value.trim()) {
+                        hasEmptyField = true;
+                    }
+                });
+
+                if (hasEmptyField) {
+                    event.preventDefault(); // Prevent form submission
+                    showErrorModal('Please fill out all required fields.');
+                    return;
+                }
+
+                // Validate email format
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailField.value)) {
+                    emailError.textContent = 'Please enter a valid email address.';
+                    event.preventDefault(); // Prevent form submission
+                } else {
+                    emailError.textContent = ''; // Clear error message
+                }
+            });
+        </script>
 
 
 </body>
