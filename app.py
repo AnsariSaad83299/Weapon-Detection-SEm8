@@ -89,8 +89,7 @@ def signup_business():
     if request.method == 'POST':
         business_name = request.form.get('businessName')
         business_email = request.form.get('businessEmail')
-        contact_number = request.form.get('businessContactNumber')
-        nearest_police_station = request.form.get('nearestPoliceStation')
+        address = request.form.get('businessAddress')
         username = request.form.get('businessUsername')
         password = request.form.get('businessPassword')
 
@@ -103,8 +102,7 @@ def signup_business():
         business_collection.insert_one({
             'business_name': business_name,
             'business_email': business_email,
-            'contact_number': contact_number,
-            'nearest_police_station': nearest_police_station,
+            'address': address,
             'username': username,
             'password': password
         })
