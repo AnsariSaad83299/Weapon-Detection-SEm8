@@ -31,7 +31,7 @@
             <div class="flex items-center ml-auto w-1/6 justify-between">
                 <div class="text-white text-lg mr-4">Hello, User</div>
                 <div class="relative">
-                    <a href="index.html">
+                    <a href="{{url_for('home')}}">
 
                         <button
                             class="bg-red-500 text-white px-4 py-2 border hover:bg-red-600 transition-all duration-300 rounded-md backdrop-blur-lg">Logout</button>
@@ -43,7 +43,8 @@
 
         <!-- Video Frame -->
         <div class="absolute flex flex-col gap-4 items-center justify-center w-full h-screen">
-            <div class="videoframe  flex justify-center items-center w-4/5 h-3/4 bg-gray-300  text-5xl font-semibold opacity-40 ">
+            <div
+                class="videoframe  flex justify-center items-center w-4/5 h-3/4 bg-gray-300  text-5xl font-semibold opacity-40 ">
                 CCTV Video</div>
             <button
                 class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300">Start

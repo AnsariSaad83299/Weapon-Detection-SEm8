@@ -24,14 +24,14 @@
             <div class="flex items-center">
                 <a href="index.html">
                     <div class="w-40 h-40 flex items-center justify-center">
-                        <img src="{{url_for('static', filename='vigilanteye 1.png')}}"" class="" alt="Logo">
+                        <img src="{{url_for('static', filename='vigilanteye 1.png')}}"" class="" alt=" Logo">
                     </div>
                 </a>
             </div>
             <div class="flex items-center ml-auto w-1/6 justify-between">
                 <div class="text-white text-lg mr-4">Hello, Officer</div>
                 <div class="relative">
-                    <a href="index.html">
+                    <a href="{{url_for('home')}}">
 
                         <button
                             class="bg-red-500 text-white px-4 py-2 border hover:bg-red-600 transition-all duration-300 rounded-md backdrop-blur-lg">Logout</button>
@@ -55,31 +55,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for business in businesses %}
                         <tr class="bg-gray-700">
-                            <td class="border px-6 py-4">1</td>
-                            <td class="border px-6 py-4">John Doe</td>
-                            <td class="border px-6 py-4">123 Main St</td>
+                            <td class="border px-6 py-4">{{ loop.index }}</td>
+                            <td class="border px-6 py-4">{{ business.business_name }}</td>
+                            <td class="border px-6 py-4">{{ business.address }}</td>
                             <td class="border px-6 py-4"><a href="#" class="text-blue-400">PDF Link</a></td>
                         </tr>
-                        <tr class="bg-gray-700">
-                            <td class="border px-6 py-4">1</td>
-                            <td class="border px-6 py-4">John Doe</td>
-                            <td class="border px-6 py-4">123 Main St</td>
-                            <td class="border px-6 py-4"><a href="#" class="text-blue-400">PDF Link</a></td>
-                        </tr>
-                        <tr class="bg-gray-700">
-                            <td class="border px-6 py-4">1</td>
-                            <td class="border px-6 py-4">John Doe</td>
-                            <td class="border px-6 py-4">123 Main St</td>
-                            <td class="border px-6 py-4"><a href="#" class="text-blue-400">PDF Link</a></td>
-                        </tr>
-                        <tr class="bg-gray-700">
-                            <td class="border px-6 py-4">1</td>
-                            <td class="border px-6 py-4">John Doe</td>
-                            <td class="border px-6 py-4">123 Main St</td>
-                            <td class="border px-6 py-4"><a href="#" class="text-blue-400">PDF Link</a></td>
-                        </tr>
-                        <!-- Add more rows as needed -->
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

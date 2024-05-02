@@ -13,7 +13,9 @@ def home():
 
 @app.route('/police')
 def police():
-    return render_template('police.html')
+    # Fetch business details from the database
+    businesses = mongo.db.business.find()
+    return render_template('police.html', businesses=businesses)
     
 @app.route('/business')
 def business():
@@ -70,6 +72,8 @@ def signup_police():
         if mongo.db.police.find_one({'police_email': police_email}):
             return jsonify({'error': 'Email already exists'}), 204
 
+        nearest_police_station = request.form.get('nearestPoliceStation')  # New field added
+
         # Insert new police data
         police_collection = mongo.db.police
         police_collection.insert_one({
@@ -77,6 +81,7 @@ def signup_police():
             'police_email': police_email,
             'contact_number': contact_number,
             'address': address,
+            'nearest_police_station': nearest_police_station,  # New field added
             'username': username,
             'password': password
         })
@@ -97,12 +102,15 @@ def signup_business():
         if mongo.db.business.find_one({'business_email': business_email}):
             return jsonify({'error': 'Email already exists'}), 204
 
+        nearest_police_station = request.form.get('nearestPoliceStation')  # New field added
+
         # Insert new business data
         business_collection = mongo.db.business
         business_collection.insert_one({
             'business_name': business_name,
             'business_email': business_email,
             'address': address,
+            'nearest_police_station': nearest_police_station,  # New field added
             'username': username,
             'password': password
         })
